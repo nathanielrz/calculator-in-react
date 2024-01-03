@@ -1,0 +1,23 @@
+button {
+  border-radius: 45px;
+  padding: 20px;
+  font-size: 45px;
+  height: 90px;
+  width: 90px;
+  border: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+button.wide {
+  width: calc(90px * 2);
+}
+button.orange {
+  background-color: #ff9300;
+  color: #fff;
+}
+button.light-grey {
+  background-color: #aaa;
+  color: #000;
+}
