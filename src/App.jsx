@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Box, styled } from "@mui/material";
 
 const Number = styled(Button)({
@@ -39,6 +39,19 @@ const Grey = styled(Number)({
 
 function App() {
   const [outputValue, setOutput] = useState("0");
+
+  useEffect(() => {
+    const output = document.getElementById("output");
+    const length = output.innerHTML.length;
+
+    if (length >= 9) {
+      output.style.fontSize = "70px";
+    } else if (length >= 6) {
+      output.style.fontSize = "80px";
+    } else {
+      output.style.fontSize = "100px";
+    }
+  }, [outputValue]);
 
   const addInput = (value) => {
     setOutput((prevValue) => {
