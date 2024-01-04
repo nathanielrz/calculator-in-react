@@ -7,8 +7,19 @@ import {
   Toolbar,
   Typography,
   IconButton,
+  ThemeProvider,
+  createTheme,
+  ListItemText,
+  ListItemIcon,
+  ListItemButton,
+  ListItem,
+  Divider,
+  List,
+  Drawer,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const Number = styled(Button)({
   borderRadius: "45px",
@@ -43,6 +54,12 @@ const Grey = styled(Number)({
   color: "#000",
   "&:hover": {
     backgroundColor: "#eee",
+  },
+});
+
+const dark = createTheme({
+  palette: {
+    mode: "dark",
   },
 });
 
@@ -114,12 +131,81 @@ function App() {
     }
   };
 
+  // https://mui.com/material-ui/react-drawer/
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <ClearIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Close"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <a
+          href="https://github.com/nate-games/calculator-in-react"
+          target="_blank"
+        >
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <GitHubIcon />
+              </ListItemIcon>
+              <ListItemText primary={"GitHub"} />
+            </ListItemButton>
+          </ListItem>
+        </a>
+      </List>
+    </Box>
+  );
+
   return (
     <>
+      {["left", "top", "down", "right"].map((anchor) => (
+        <React.Fragment key={anchor}>
+          <ThemeProvider theme={dark}>
+            <Drawer
+              anchor={anchor}
+              open={state[anchor]}
+              onClose={toggleDrawer(anchor, false)}
+            >
+              {list(anchor)}
+            </Drawer>
+          </ThemeProvider>
+        </React.Fragment>
+      ))}
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "#111" }}>
           <Toolbar>
             <IconButton
+              onClick={toggleDrawer("left", true)}
               size="large"
               edge="start"
               color="inherit"
