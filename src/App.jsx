@@ -123,11 +123,11 @@ function App() {
 
   const calculate = () => {
     try {
-      setOutput(eval(outputValue).toString());
+      setOutput(Math.round(eval(outputValue) * 1e12) / 1e12.toString());
     } catch (error) {
       setOutput("Error");
     }
-  };
+  };  
 
   const percent = () => {
     try {
