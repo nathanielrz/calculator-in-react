@@ -97,6 +97,14 @@ function App() {
     }
   };
 
+  const np = () => {
+    if (outputValue.startsWith("-")) {
+      setOutput(outputValue.slice(1));
+    } else {
+      setOutput(`-${outputValue}`)
+    }
+  };  
+
   return (
     <div id="screen">
       <div className="computer">
@@ -115,7 +123,7 @@ function App() {
         <Grey onClick={clear} id="clearBtn" className="light-grey">
           <span id="clearText">AC</span>
         </Grey>
-        <Grey onClick={clear} className="light-grey">
+        <Grey onClick={np} className="light-grey">
           +/-
         </Grey>
         <Grey onClick={percent} className="light-grey">
