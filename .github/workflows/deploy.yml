@@ -24,6 +24,11 @@ jobs:
       - name: Build the app
         run: npm run build
 
+      - name: Login
+        run: |
+          git config user.email "contact@nate-games.xyz"
+          git config user.name "Nathaniel"
+
       - name: Create gh-pages branch
         run: |
           git checkout --orphan gh-pages
