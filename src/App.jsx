@@ -99,6 +99,24 @@ function App() {
     });
   };
 
+  const addDecimal = () => {
+    console.log(outputValue.slice(-1));
+    if (outputValue === "0") {
+      addInput("0.");
+    } else if (outputValue.slice(-1) === "0") {
+      addInput("0.");
+    } else if (
+      outputValue.slice(-1) === "+" ||
+      outputValue.slice(-1) === "-" ||
+      outputValue.slice(-1) === "*" ||
+      outputValue.slice(-1) === "/"
+    ) {
+      addInput("0.");
+    } else {
+      addInput(".");
+    }
+  };
+
   const clear = () => {
     setOutput("0");
   };
@@ -255,7 +273,7 @@ function App() {
           <Orange onClick={() => addInput("+")}>+</Orange>
           <NumberWide onClick={() => addInput("0")}>0</NumberWide>
           <br />
-          <Number onClick={() => addInput(".")}>.</Number>
+          <Number onClick={() => addDecimal()}>.</Number>
           <Orange onClick={calculate}>=</Orange>
         </Box>
       </div>
