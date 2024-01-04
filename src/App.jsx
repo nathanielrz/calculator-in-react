@@ -65,6 +65,12 @@ function App() {
       const newValue = prevValue === "0" ? value : prevValue + value;
       return newValue.length <= 9 ? newValue : prevValue;
     });
+    const clearBtn = document.getElementById("clearBtn");
+    const clearText = document.getElementById("clearText");
+    clearText.innerText = "C";
+    clearBtn.addEventListener("click", function () {
+      clearText.innerText = "AC";
+    });
   };
 
   const clear = () => {
@@ -81,12 +87,6 @@ function App() {
 
   const percent = () => {
     try {
-      const clearBtn = document.getElementById("clearBtn");
-      const clearText = document.getElementById("clearText");
-      clearText.innerText = "C";
-      clearBtn.addEventListener("click", function () {
-        clearText.innerText = "AC";
-      });
       const result = (eval(outputValue) / 100).toString();
       setOutput(result);
     } catch (error) {
