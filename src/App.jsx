@@ -68,7 +68,7 @@ function App() {
         sx={{
           display: "grid",
           gap: "10px",
-          gridTemplateColumns: "repeat(4, 85px)",
+          gridTemplateColumns: "repeat(4, 90px)",
           alignItems: "center",
           justifyContent: "center",
         }}
