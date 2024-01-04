@@ -1,7 +1,6 @@
 :root {
-  background-color: #111;
+  background-color: #000;
   color: #fff;
-  font-family: system-ui, sans-serif;
 }
 
 html,
@@ -10,23 +9,17 @@ body {
   padding: 0;
 }
 
-* {
-  font-weight: 500;
-}
-
-#screen {
-  display: inline-block;
-  position: absolute;
-  background-color: #000;
-  height: 100%;
-  width: 25%;
-  right: calc(75vw / 2);
-}
-
 #output {
-  font-size: 75px;
-  display: flex;
-  justify-content: right;
-  margin-right: 75px;
-  margin-top: 75px;
+  font-family: system-ui, sans-serif;
+  font-size: 100px;
+  font-weight: 300;
+  margin: 0;
+  position: absolute;
+  top: calc(25% - 75px);
+  left: calc(50% + 75px * 2);
+  transform: translate(-50%, -50%);
+}
+
+#buttons {
+  margin-top: calc(25% / 2);
 }

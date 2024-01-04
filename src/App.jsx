@@ -1,6 +1,42 @@
 import React, { useState } from "react";
-import "./App.css";
-import { Box } from '@mui/material';
+import { Button, Box, styled } from "@mui/material";
+
+const Number = styled(Button)({
+  borderRadius: "45px",
+  fontFamily: "system-ui, sans-serif",
+  padding: "20px",
+  fontSize: "45px",
+  height: "90px",
+  width: "90px",
+  border: "none",
+  color: "#fff",
+  backgroundColor: "#333",
+  cursor: "pointer",
+  fontWeight: "500",
+  "&:hover": {
+    backgroundColor: "#333",
+  },
+});
+
+const NumberWide = styled(Number)({
+  width: "calc(90px * 2)",
+});
+
+const Orange = styled(Number)({
+  backgroundColor: "#ff9300",
+  "&:hover": {
+    backgroundColor: "#ff9300",
+  },
+});
+
+const Grey = styled(Number)({
+  backgroundColor: "#aaa",
+  color: "#000",
+  "&:hover": {
+    backgroundColor: "#aaa",
+  },
+});
+
 
 function App() {
   const [outputValue, setOutputValue] = useState("0");
@@ -26,51 +62,44 @@ function App() {
   return (
     <div id="screen">
       <p id="output">{outputValue}</p>
-      <Box id="buttons" sx={{
-        display: "grid",
-        gap: "10px",
-        gridTemplateColumns: "repeat(4, 85px)",
-        alignItems: "center",
-        justifyContent: "center"
-      }}>
-        <button onClick={clear} className="light-grey">
+      <Box
+        id="buttons"
+        sx={{
+          display: "grid",
+          gap: "10px",
+          gridTemplateColumns: "repeat(4, 85px)",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Grey onClick={clear} className="light-grey">
           AC
-        </button>
-        <button onClick={clear} className="light-grey">
+        </Grey>
+        <Grey onClick={clear} className="light-grey">
           AC
-        </button>
-        <button onClick={clear} className="light-grey">
+        </Grey>
+        <Grey onClick={clear} className="light-grey">
           AC
-        </button>
-        <button onClick={() => appendToOutput("/")} className="orange">
+        </Grey>
+        <Orange onClick={() => appendToOutput("/")}>
           /
-        </button>
-        <button onClick={() => appendToOutput("7")}>7</button>
-        <button onClick={() => appendToOutput("8")}>8</button>
-        <button onClick={() => appendToOutput("9")}>9</button>
-        <button onClick={() => appendToOutput("*")} className="orange">
-          *
-        </button>
-        <button onClick={() => appendToOutput("4")}>4</button>
-        <button onClick={() => appendToOutput("5")}>5</button>
-        <button onClick={() => appendToOutput("6")}>6</button>
-        <button onClick={() => appendToOutput("-")} className="orange">
-          -
-        </button>
-        <button onClick={() => appendToOutput("1")}>1</button>
-        <button onClick={() => appendToOutput("2")}>2</button>
-        <button onClick={() => appendToOutput("3")}>3</button>
-        <button onClick={() => appendToOutput("+")} className="orange">
-          +
-        </button>
-        <button onClick={() => appendToOutput("0")} className="wide">
-          0
-        </button>
+        </Orange>
+        <Number onClick={() => appendToOutput("7")}>7</Number>
+        <Number onClick={() => appendToOutput("8")}>8</Number>
+        <Number onClick={() => appendToOutput("9")}>9</Number>
+        <Orange onClick={() => appendToOutput("*")}>*</Orange>
+        <Number onClick={() => appendToOutput("4")}>4</Number>
+        <Number onClick={() => appendToOutput("5")}>5</Number>
+        <Number onClick={() => appendToOutput("6")}>6</Number>
+        <Orange onClick={() => appendToOutput("-")}>-</Orange>
+        <Number onClick={() => appendToOutput("1")}>1</Number>
+        <Number onClick={() => appendToOutput("2")}>2</Number>
+        <Number onClick={() => appendToOutput("3")}>3</Number>
+        <Orange onClick={() => appendToOutput("+")}>+</Orange>
+        <NumberWide onClick={() => appendToOutput("0")}>0</NumberWide>
         <br />
-        <button onClick={() => appendToOutput(".")}>.</button>
-        <button onClick={calculateResult} className="orange">
-          =
-        </button>
+        <Number onClick={() => appendToOutput(".")}>.</Number>
+        <Orange onClick={calculateResult}>=</Orange>
       </Box>
     </div>
   );
