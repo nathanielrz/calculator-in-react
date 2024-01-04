@@ -38,23 +38,23 @@ const Grey = styled(Number)({
 });
 
 function App() {
-  const [outputValue, setOutputValue] = useState("0");
+  const [outputValue, setOutput] = useState("0");
 
-  const appendToOutput = (value) => {
-    setOutputValue((prevValue) => {
+  const addInput = (value) => {
+    setOutput((prevValue) => {
       return prevValue === "0" ? value : prevValue + value;
     });
   };
 
   const clear = () => {
-    setOutputValue("0");
+    setOutput("0");
   };
 
-  const calculateResult = () => {
+  const calculate = () => {
     try {
-      setOutputValue(eval(outputValue).toString());
+      setOutput(eval(outputValue).toString());
     } catch (error) {
-      setOutputValue("Error");
+      setOutput("Error");
     }
   };
 
@@ -82,23 +82,23 @@ function App() {
         <Grey onClick={clear} className="light-grey">
           AC
         </Grey>
-        <Orange onClick={() => appendToOutput("/")}>/</Orange>
-        <Number onClick={() => appendToOutput("7")}>7</Number>
-        <Number onClick={() => appendToOutput("8")}>8</Number>
-        <Number onClick={() => appendToOutput("9")}>9</Number>
-        <Orange onClick={() => appendToOutput("*")}>*</Orange>
-        <Number onClick={() => appendToOutput("4")}>4</Number>
-        <Number onClick={() => appendToOutput("5")}>5</Number>
-        <Number onClick={() => appendToOutput("6")}>6</Number>
-        <Orange onClick={() => appendToOutput("-")}>-</Orange>
-        <Number onClick={() => appendToOutput("1")}>1</Number>
-        <Number onClick={() => appendToOutput("2")}>2</Number>
-        <Number onClick={() => appendToOutput("3")}>3</Number>
-        <Orange onClick={() => appendToOutput("+")}>+</Orange>
-        <NumberWide onClick={() => appendToOutput("0")}>0</NumberWide>
+        <Orange onClick={() => addInput("/")}>/</Orange>
+        <Number onClick={() => addInput("7")}>7</Number>
+        <Number onClick={() => addInput("8")}>8</Number>
+        <Number onClick={() => addInput("9")}>9</Number>
+        <Orange onClick={() => addInput("*")}>*</Orange>
+        <Number onClick={() => addInput("4")}>4</Number>
+        <Number onClick={() => addInput("5")}>5</Number>
+        <Number onClick={() => addInput("6")}>6</Number>
+        <Orange onClick={() => addInput("-")}>-</Orange>
+        <Number onClick={() => addInput("1")}>1</Number>
+        <Number onClick={() => addInput("2")}>2</Number>
+        <Number onClick={() => addInput("3")}>3</Number>
+        <Orange onClick={() => addInput("+")}>+</Orange>
+        <NumberWide onClick={() => addInput("0")}>0</NumberWide>
         <br />
-        <Number onClick={() => appendToOutput(".")}>.</Number>
-        <Orange onClick={calculateResult}>=</Orange>
+        <Number onClick={() => addInput(".")}>.</Number>
+        <Orange onClick={calculate}>=</Orange>
       </Box>
     </div>
   );
