@@ -14,7 +14,7 @@ const Number = styled(Button)({
   cursor: "pointer",
   fontWeight: "500",
   "&:hover": {
-    backgroundColor: "#333",
+    backgroundColor: "#666",
   },
 });
 
@@ -25,7 +25,7 @@ const NumberWide = styled(Number)({
 const Orange = styled(Number)({
   backgroundColor: "#ff9300",
   "&:hover": {
-    backgroundColor: "#ff9300",
+    backgroundColor: "#fcbc64",
   },
 });
 
@@ -33,7 +33,7 @@ const Grey = styled(Number)({
   backgroundColor: "#aaa",
   color: "#000",
   "&:hover": {
-    backgroundColor: "#aaa",
+    backgroundColor: "#eee",
   },
 });
 
