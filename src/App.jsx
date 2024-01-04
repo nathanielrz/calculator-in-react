@@ -42,7 +42,8 @@ function App() {
 
   const addInput = (value) => {
     setOutput((prevValue) => {
-      return prevValue === "0" ? value : prevValue + value;
+      const newValue = prevValue === "0" ? value : prevValue + value;
+      return newValue.length <= 9 ? newValue : prevValue;
     });
   };
 
