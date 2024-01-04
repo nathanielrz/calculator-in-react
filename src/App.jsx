@@ -43,8 +43,15 @@ function App() {
   useEffect(() => {
     const output = document.getElementById("output");
     const length = output.innerHTML.length;
-
-    if (length >= 9) {
+    if (length >= 21) {
+      output.style.fontSize = "30px";
+    } else if (length >= 18) {
+      output.style.fontSize = "40px";
+    } else if (length >= 15) {
+      output.style.fontSize = "50px";
+    } else if (length >= 12) {
+      output.style.fontSize = "60px";
+    } else if (length >= 9) {
       output.style.fontSize = "70px";
     } else if (length >= 6) {
       output.style.fontSize = "80px";
@@ -72,6 +79,21 @@ function App() {
     }
   };
 
+  const percent = () => {
+    try {
+      const clearBtn = document.getElementById("clearBtn");
+      const clearText = document.getElementById("clearText");
+      clearText.innerText = "C";
+      clearBtn.addEventListener("click", function () {
+        clearText.innerText = "AC";
+      });
+      const result = (eval(outputValue) / 100).toString();
+      setOutput(result);
+    } catch (error) {
+      setOutput("Error");
+    }
+  };
+
   return (
     <div id="screen">
       <div className="computer">
@@ -87,14 +109,14 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <Grey onClick={clear} className="light-grey">
-          AC
+        <Grey onClick={clear} id="clearBtn" className="light-grey">
+          <span id="clearText">AC</span>
         </Grey>
         <Grey onClick={clear} className="light-grey">
-          AC
+          +/-
         </Grey>
-        <Grey onClick={clear} className="light-grey">
-          AC
+        <Grey onClick={percent} className="light-grey">
+          %
         </Grey>
         <Orange onClick={() => addInput("/")}>&divide;</Orange>
         <Number onClick={() => addInput("7")}>7</Number>
