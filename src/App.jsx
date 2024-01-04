@@ -4,8 +4,8 @@ import { Button, Box, styled } from "@mui/material";
 const Number = styled(Button)({
   borderRadius: "45px",
   fontFamily: "system-ui, sans-serif",
-  padding: "20px",
-  fontSize: "45px",
+  padding: "25px",
+  fontSize: "40px",
   height: "90px",
   width: "90px",
   border: "none",
