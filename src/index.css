@@ -9,17 +9,18 @@ body {
   padding: 0;
 }
 
-#output {
+.computer {
   font-family: system-ui, sans-serif;
   font-size: 100px;
   font-weight: 300;
-  margin: 0;
-  position: absolute;
-  top: calc(25% - 75px);
-  left: calc(50% + 75px * 2);
-  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  position: relative;
 }
 
-#buttons {
-  margin-top: calc(25% / 2);
+#output {
+  position: absolute;
+  right: calc(50% - 175px)
 }

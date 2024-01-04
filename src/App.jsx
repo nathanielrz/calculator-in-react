@@ -37,7 +37,6 @@ const Grey = styled(Number)({
   },
 });
 
-
 function App() {
   const [outputValue, setOutputValue] = useState("0");
 
@@ -61,7 +60,9 @@ function App() {
 
   return (
     <div id="screen">
-      <p id="output">{outputValue}</p>
+      <div className="computer">
+        <p id="output">{outputValue}</p>
+      </div>
       <Box
         id="buttons"
         sx={{
@@ -81,9 +82,7 @@ function App() {
         <Grey onClick={clear} className="light-grey">
           AC
         </Grey>
-        <Orange onClick={() => appendToOutput("/")}>
-          /
-        </Orange>
+        <Orange onClick={() => appendToOutput("/")}>/</Orange>
         <Number onClick={() => appendToOutput("7")}>7</Number>
         <Number onClick={() => appendToOutput("8")}>8</Number>
         <Number onClick={() => appendToOutput("9")}>9</Number>
