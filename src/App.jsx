@@ -82,11 +82,11 @@ function App() {
         <Grey onClick={clear} className="light-grey">
           AC
         </Grey>
-        <Orange onClick={() => addInput("/")}>/</Orange>
+        <Orange onClick={() => addInput("/")}>&divide;</Orange>
         <Number onClick={() => addInput("7")}>7</Number>
         <Number onClick={() => addInput("8")}>8</Number>
         <Number onClick={() => addInput("9")}>9</Number>
-        <Orange onClick={() => addInput("*")}>*</Orange>
+        <Orange onClick={() => addInput("*")}>&times;</Orange>
         <Number onClick={() => addInput("4")}>4</Number>
         <Number onClick={() => addInput("5")}>5</Number>
         <Number onClick={() => addInput("6")}>6</Number>
