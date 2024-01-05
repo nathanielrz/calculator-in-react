@@ -129,37 +129,113 @@ function App() {
     clearText.innerText = "C";
     clearBtn.addEventListener("click", () => (clearText.innerText = "AC"));
     if (value === "/") {
-      setInput(`${input}${value}`);
+      setInput(`${input}${value}0`);
       setResult(`${input.split("*")[0]}`);
       divide.classList.add("toggled");
     } else if (value === "*") {
-      setInput(`${input}${value}`);
+      setInput(`${input}${value}0`);
       setResult(`${input.split("*")[0]}`);
       times.classList.add("toggled");
     } else if (value === "-") {
-      setInput(`${input}${value}`);
+      setInput(`${input}${value}0`);
       setResult(`${input.split("*")[0]}`);
       subtract.classList.add("toggled");
     } else if (value === "+") {
-      setInput(`${input}${value}`);
+      setInput(`${input}${value}0`);
       setResult(`${input.split("*")[0]}`);
       plus.classList.add("toggled");
     } else if (input.includes("/")) {
-      setInput(`${input}${value}`);
-      setResult(`${input.split("/")[1]}${value}`);
       divide.classList.remove("toggled");
+      if (value === ".") {
+        setInput(`${input}${value}`);
+        setResult(`${input.split("/")[1]}${value}`);
+      } else {
+        if (input.split("/")[1].startsWith("0.")) {
+          setInput(`${input}${value}`);
+          setResult(`${input.split("/")[1]}${value}`);
+        } else {
+          if (input.split("/")[1].startsWith("0")) {
+            setInput(
+              `${input.split("/")[0]}/${input
+                .split("/")[1]
+                .slice(0, -1)}${value}`
+            );
+            setResult(`${input.split("/")[1].slice(0, -1)}${value}`);
+          } else {
+            setInput(`${input}${value}`);
+            setResult(`${input.split("/")[1]}${value}`);
+          }
+        }
+      }
     } else if (input.includes("*")) {
-      setInput(`${input}${value}`);
-      setResult(`${input.split("*")[1]}${value}`);
       times.classList.remove("toggled");
+      if (value === ".") {
+        setInput(`${input}${value}`);
+        setResult(`${input.split("*")[1]}${value}`);
+      } else {
+        if (input.split("*")[1].startsWith("0.")) {
+          setInput(`${input}${value}`);
+          setResult(`${input.split("*")[1]}${value}`);
+        } else {
+          if (input.split("*")[1].startsWith("0")) {
+            setInput(
+              `${input.split("*")[0]}*${input
+                .split("*")[1]
+                .slice(0, -1)}${value}`
+            );
+            setResult(`${input.split("*")[1].slice(0, -1)}${value}`);
+          } else {
+            setInput(`${input}${value}`);
+            setResult(`${input.split("*")[1]}${value}`);
+          }
+        }
+      }
     } else if (input.includes("-")) {
-      setInput(`${input}${value}`);
-      setResult(`${input.split("-")[1]}${value}`);
       subtract.classList.remove("toggled");
+      if (value === ".") {
+        setInput(`${input}${value}`);
+        setResult(`${input.split("-")[1]}${value}`);
+      } else {
+        if (input.split("-")[1].startsWith("0.")) {
+          setInput(`${input}${value}`);
+          setResult(`${input.split("-")[1]}${value}`);
+        } else {
+          if (input.split("-")[1].startsWith("0")) {
+            setInput(
+              `${input.split("-")[0]}-${input
+                .split("-")[1]
+                .slice(0, -1)}${value}`
+            );
+            setResult(`${input.split("-")[1].slice(0, -1)}${value}`);
+          } else {
+            setInput(`${input}${value}`);
+            setResult(`${input.split("-")[1]}${value}`);
+          }
+        }
+      }
     } else if (input.includes("+")) {
-      setInput(`${input}${value}`);
-      setResult(`${input.split("+")[1]}${value}`);
       plus.classList.remove("toggled");
+      if (value === ".") {
+        setInput(`${input}${value}`);
+        setResult(`${input.split("+")[1]}${value}`);
+      } else {
+        if (input.split("+")[1].startsWith("0.")) {
+          setInput(`${input}${value}`);
+          setResult(`${input.split("+")[1]}${value}`);
+        } else {
+          if (input.split("+")[1].startsWith("0")) {
+            setInput(
+              `${input.split("+")[0]}+${input
+                .split("+")[1]
+                .slice(0, -1)}${value}`
+            );
+            setResult(`${input.split("+")[1].slice(0, -1)}${value}`);
+          } else {
+            setInput(`${input}${value}`);
+            setResult(`${input.split("+")[1]}${value}`);
+          }
+        }
+      }
     } else if (value === ".") {
       setInput(`${input}${value}`);
       setResult(`${input}${value}`);
@@ -168,10 +244,10 @@ function App() {
         setInput(`${input}${value}`);
         setResult(`${input}${value}`);
       } else {
-        if (input.startsWith(0)) {
+        if (result.startsWith(0)) {
           setInput(`${value}`);
           setResult(`${value}`);
-        } else if (input.length < 9) {
+        } else if (result.length < 9) {
           setInput(`${input}${value}`);
           setResult(`${input}${value}`);
         } else {
