@@ -47,6 +47,10 @@ const Orange = styled(Number)({
   "&:hover": {
     backgroundColor: "#fcbc64",
   },
+  "&.toggled": {
+    backgroundColor: "#fff",
+    color: "#ff9300",
+  },
 });
 
 const Grey = styled(Number)({
@@ -64,52 +68,40 @@ const dark = createTheme({
 });
 
 function App() {
-  const [outputValue, setOutput] = useState("0");
+  const [input, setInput] = useState("0");
+  const [result, setResult] = useState("0");
 
   useEffect(() => {
-    const output = document.getElementById("output");
-    const length = output.innerHTML.length;
+    const result = document.getElementById("result");
+    const length = result.innerHTML.length;
     if (length >= 21) {
-      output.style.fontSize = "30px";
+      result.style.fontSize = "30px";
     } else if (length >= 18) {
-      output.style.fontSize = "40px";
+      result.style.fontSize = "40px";
     } else if (length >= 15) {
-      output.style.fontSize = "50px";
+      result.style.fontSize = "50px";
     } else if (length >= 12) {
-      output.style.fontSize = "60px";
+      result.style.fontSize = "60px";
     } else if (length >= 9) {
-      output.style.fontSize = "70px";
+      result.style.fontSize = "70px";
     } else if (length >= 6) {
-      output.style.fontSize = "80px";
+      result.style.fontSize = "80px";
     } else {
-      output.style.fontSize = "100px";
+      result.style.fontSize = "100px";
     }
-  }, [outputValue]);
-
-  const addInput = (value) => {
-    setOutput((prevValue) => {
-      const newValue = prevValue === "0" ? value : prevValue + value;
-      return newValue.length <= 9 ? newValue : prevValue;
-    });
-    const clearBtn = document.getElementById("clearBtn");
-    const clearText = document.getElementById("clearText");
-    clearText.innerText = "C";
-    clearBtn.addEventListener("click", function () {
-      clearText.innerText = "AC";
-    });
-  };
+  }, [result]);
 
   const addDecimal = () => {
-    console.log(outputValue.slice(-1));
-    if (outputValue === "0") {
+    console.log(input.slice(-1));
+    if (input === "0") {
       addInput("0.");
-    } else if (outputValue.slice(-1) === "0") {
+    } else if (input.slice(-1) === "0") {
       addInput("0.");
     } else if (
-      outputValue.slice(-1) === "+" ||
-      outputValue.slice(-1) === "-" ||
-      outputValue.slice(-1) === "*" ||
-      outputValue.slice(-1) === "/"
+      input.slice(-1) === "+" ||
+      input.slice(-1) === "-" ||
+      input.slice(-1) === "*" ||
+      input.slice(-1) === "/"
     ) {
       addInput("0.");
     } else {
@@ -118,31 +110,103 @@ function App() {
   };
 
   const clear = () => {
-    setOutput("0");
+    const divide = document.getElementById("divide");
+    const times = document.getElementById("times");
+    const subtract = document.getElementById("subtract");
+    const plus = document.getElementById("plus");
+    divide.classList.remove("toggled");
+    times.classList.remove("toggled");
+    subtract.classList.remove("toggled");
+    plus.classList.remove("toggled");
+    setInput("0");
+    setResult("0");
   };
 
   const calculate = () => {
     try {
-      setOutput(Math.round(eval(outputValue) * 1e12) / 1e12.toString());
+      const answer = Math.round(eval(input) * 1e12) / (1e12).toString();
+      setInput(answer);
+      setResult(answer);
+      const divide = document.getElementById("divide");
+      const times = document.getElementById("times");
+      const subtract = document.getElementById("subtract");
+      const plus = document.getElementById("plus");
+      divide.classList.remove("toggled");
+      times.classList.remove("toggled");
+      subtract.classList.remove("toggled");
+      plus.classList.remove("toggled");
     } catch (error) {
-      setOutput("Error");
+      setInput("Error");
+      setResult("Error");
     }
-  };  
+  };
+
+  const addInput = (value) => {
+    const divide = document.getElementById("divide");
+    const times = document.getElementById("times");
+    const subtract = document.getElementById("subtract");
+    const plus = document.getElementById("plus");
+    if (value === "/") {
+      setInput(`${input}${value}`);
+      setResult(input.split("*")[0]);
+      divide.classList.add("toggled");
+    } else if (value === "*") {
+      setInput(`${input}${value}`);
+      setResult(input.split("*")[0]);
+      times.classList.add("toggled");
+    } else if (value === "-") {
+      setInput(`${input}${value}`);
+      setResult(input.split("*")[0]);
+      subtract.classList.add("toggled");
+    } else if (value === "+") {
+      setInput(`${input}${value}`);
+      setResult(input.split("*")[0]);
+      plus.classList.add("toggled");
+    } else if (
+      input.includes("/") ||
+      input.includes("*") ||
+      input.includes("-") ||
+      input.includes("+")
+    ) {
+      setInput(`${input}${value}`);
+      setResult(`${value}`);
+    } else {
+      if (input.startsWith(0)) {
+        setInput(`${value}`);
+        setResult(`${value}`);
+        const clearBtn = document.getElementById("clearBtn");
+        const clearText = document.getElementById("clearText");
+        clearText.innerText = "C";
+        clearBtn.addEventListener("click", function () {
+          clearText.innerText = "AC";
+        });
+      } else if (document.getElementById("input").innerHTML.length < 9) {
+        setInput(`${input}${value}`);
+        setResult(`${input}${value}`);
+      } else {
+        console.log("Max input!");
+      }
+    }
+  };
 
   const percent = () => {
     try {
-      const result = (eval(outputValue) / 100).toString();
-      setOutput(result);
+      const result = (eval(input) / 100).toString();
+      setInput(result);
+      setResult(result);
     } catch (error) {
-      setOutput("Error");
+      setInput("Error");
+      setResult("Error");
     }
   };
 
   const np = () => {
-    if (outputValue.startsWith("-")) {
-      setOutput(outputValue.slice(1));
+    if (input.startsWith("-")) {
+      setInput(input.slice(1));
+      setResult(input.slice(1));
     } else {
-      setOutput(`-${outputValue}`);
+      setInput(`-${input}`);
+      setResult(`-${input}`);
     }
   };
 
@@ -237,7 +301,10 @@ function App() {
       </Box>
       <div id="screen">
         <div className="computer">
-          <p id="output">{outputValue}</p>
+          <p id="input" style={{ display: "none" }}>
+            {input}
+          </p>
+          <p id="result">{result}</p>
         </div>
         <Box
           id="buttons"
@@ -258,19 +325,27 @@ function App() {
           <Grey onClick={percent} className="light-grey">
             %
           </Grey>
-          <Orange onClick={() => addInput("/")}>&divide;</Orange>
+          <Orange onClick={() => addInput("/")} id="divide">
+            &divide;
+          </Orange>
           <Number onClick={() => addInput("7")}>7</Number>
           <Number onClick={() => addInput("8")}>8</Number>
           <Number onClick={() => addInput("9")}>9</Number>
-          <Orange onClick={() => addInput("*")}>&times;</Orange>
+          <Orange onClick={() => addInput("*")} id="times">
+            &times;
+          </Orange>
           <Number onClick={() => addInput("4")}>4</Number>
           <Number onClick={() => addInput("5")}>5</Number>
           <Number onClick={() => addInput("6")}>6</Number>
-          <Orange onClick={() => addInput("-")}>-</Orange>
+          <Orange onClick={() => addInput("-")} id="subtract">
+            -
+          </Orange>
           <Number onClick={() => addInput("1")}>1</Number>
           <Number onClick={() => addInput("2")}>2</Number>
           <Number onClick={() => addInput("3")}>3</Number>
-          <Orange onClick={() => addInput("+")}>+</Orange>
+          <Orange onClick={() => addInput("+")} id="plus">
+            +
+          </Orange>
           <NumberWide onClick={() => addInput("0")}>0</NumberWide>
           <br />
           <Number onClick={() => addDecimal()}>.</Number>

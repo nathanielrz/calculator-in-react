@@ -21,7 +21,7 @@ body {
   user-select: none;
 }
 
-#output {
+#result {
   position: absolute;
   right: calc(50% - 175px)
 }
