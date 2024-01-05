@@ -110,7 +110,7 @@ function App() {
   };
 
   const tap = () => {
-    var audio = new Audio("/tap.wav");
+    var audio = new Audio("./tap.wav");
     audio.play();
   };
 
