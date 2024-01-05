@@ -74,16 +74,22 @@ function App() {
   useEffect(() => {
     const result = document.getElementById("result");
     const length = result.innerHTML.length;
-    if (length >= 21) {
-      result.style.fontSize = "30px";
-    } else if (length >= 18) {
+    if (length >= 14) {
       result.style.fontSize = "40px";
-    } else if (length >= 15) {
-      result.style.fontSize = "50px";
+    } else if (length >= 13) {
+      result.style.fontSize = "45px";
     } else if (length >= 12) {
+      result.style.fontSize = "50px";
+    } else if (length >= 11) {
+      result.style.fontSize = "55px";
+    } else if (length >= 10) {
       result.style.fontSize = "60px";
     } else if (length >= 9) {
+      result.style.fontSize = "65px";
+    } else if (length >= 8) {
       result.style.fontSize = "70px";
+    } else if (length >= 7) {
+      result.style.fontSize = "75px";
     } else if (length >= 6) {
       result.style.fontSize = "80px";
     } else {
