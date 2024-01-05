@@ -91,24 +91,6 @@ function App() {
     }
   }, [result]);
 
-  const addDecimal = () => {
-    console.log(input.slice(-1));
-    if (input === "0") {
-      addInput("0.");
-    } else if (input.slice(-1) === "0") {
-      addInput("0.");
-    } else if (
-      input.slice(-1) === "+" ||
-      input.slice(-1) === "-" ||
-      input.slice(-1) === "*" ||
-      input.slice(-1) === "/"
-    ) {
-      addInput("0.");
-    } else {
-      addInput(".");
-    }
-  };
-
   const tap = () => {
     var audio = new Audio("./tap.wav");
     audio.play();
@@ -143,6 +125,9 @@ function App() {
     const times = document.getElementById("times");
     const subtract = document.getElementById("subtract");
     const plus = document.getElementById("plus");
+    const clearBtn = document.getElementById("clearBtn");
+    clearText.innerText = "C";
+    clearBtn.addEventListener("click", () => (clearText.innerText = "AC"));
     if (value === "/") {
       setInput(`${input}${value}`);
       setResult(input.split("*")[0]);
@@ -175,18 +160,23 @@ function App() {
       setInput(`${input}${value}`);
       setResult(`${input.split("+")[1]}${value}`);
       plus.classList.remove("toggled");
-    }else {
-      if (input.startsWith(0)) {
-        setInput(`${value}`);
-        setResult(`${value}`);
-        const clearBtn = document.getElementById("clearBtn");
-        clearText.innerText = "C";
-        clearBtn.addEventListener("click", () => (clearText.innerText = "AC"));
-      } else if (input.length < 9) {
+    } else if (value === ".") {
+      setInput(`${input}${value}`);
+      setResult(`${input}${value}`);
+    } else {
+      if (input.startsWith("0.")) {
         setInput(`${input}${value}`);
         setResult(`${input}${value}`);
       } else {
-        console.log("Max input!");
+        if (input.startsWith(0)) {
+          setInput(`${value}`);
+          setResult(`${value}`);
+        } else if (input.length < 9) {
+          setInput(`${input}${value}`);
+          setResult(`${input}${value}`);
+        } else {
+          console.log("Max input!");
+        }
       }
     }
   };
@@ -465,7 +455,7 @@ function App() {
           <br />
           <Number
             onClick={() => {
-              addDecimal();
+              addInput(".");
               tap();
             }}
           >
