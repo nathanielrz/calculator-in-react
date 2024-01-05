@@ -23,5 +23,10 @@ body {
 
 #result {
   position: absolute;
-  right: calc(50% - 175px)
+  right: calc(50% - 175px);
+}
+
+a {
+  color: #2c9cee;
+  text-decoration: none;
 }
