@@ -130,19 +130,19 @@ function App() {
     clearBtn.addEventListener("click", () => (clearText.innerText = "AC"));
     if (value === "/") {
       setInput(`${input}${value}`);
-      setResult(input.split("*")[0]);
+      setResult(`${input.split("*")[0]}`);
       divide.classList.add("toggled");
     } else if (value === "*") {
       setInput(`${input}${value}`);
-      setResult(input.split("*")[0]);
+      setResult(`${input.split("*")[0]}`);
       times.classList.add("toggled");
     } else if (value === "-") {
       setInput(`${input}${value}`);
-      setResult(input.split("*")[0]);
+      setResult(`${input.split("*")[0]}`);
       subtract.classList.add("toggled");
     } else if (value === "+") {
       setInput(`${input}${value}`);
-      setResult(input.split("*")[0]);
+      setResult(`${input.split("*")[0]}`);
       plus.classList.add("toggled");
     } else if (input.includes("/")) {
       setInput(`${input}${value}`);
