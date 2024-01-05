@@ -159,25 +159,29 @@ function App() {
       setInput(`${input}${value}`);
       setResult(input.split("*")[0]);
       plus.classList.add("toggled");
-    } else if (
-      input.includes("/") ||
-      input.includes("*") ||
-      input.includes("-") ||
-      input.includes("+")
-    ) {
+    } else if (input.includes("/")) {
       setInput(`${input}${value}`);
-      setResult(`${value}`);
+      setResult(`${input.split("/")[1]}${value}`);
       divide.classList.remove("toggled");
+    } else if (input.includes("*")) {
+      setInput(`${input}${value}`);
+      setResult(`${input.split("*")[1]}${value}`);
       times.classList.remove("toggled");
+    } else if (input.includes("-")) {
+      setInput(`${input}${value}`);
+      setResult(`${input.split("-")[1]}${value}`);
       subtract.classList.remove("toggled");
+    } else if (input.includes("+")) {
+      setInput(`${input}${value}`);
+      setResult(`${input.split("+")[1]}${value}`);
       plus.classList.remove("toggled");
-    } else {
+    }else {
       if (input.startsWith(0)) {
         setInput(`${value}`);
         setResult(`${value}`);
         const clearBtn = document.getElementById("clearBtn");
         clearText.innerText = "C";
-        clearBtn.addEventListener("click", () => clearText.innerText = "AC");
+        clearBtn.addEventListener("click", () => (clearText.innerText = "AC"));
       } else if (input.length < 9) {
         setInput(`${input}${value}`);
         setResult(`${input}${value}`);
