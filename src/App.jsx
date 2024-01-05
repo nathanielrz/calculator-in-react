@@ -180,12 +180,9 @@ function App() {
         setInput(`${value}`);
         setResult(`${value}`);
         const clearBtn = document.getElementById("clearBtn");
-        const clearText = document.getElementById("clearText");
         clearText.innerText = "C";
-        clearBtn.addEventListener("click", function () {
-          clearText.innerText = "AC";
-        });
-      } else if (document.getElementById("input").innerHTML.length < 9) {
+        clearBtn.addEventListener("click", () => clearText.innerText = "AC");
+      } else if (input.length < 9) {
         setInput(`${input}${value}`);
         setResult(`${input}${value}`);
       } else {
