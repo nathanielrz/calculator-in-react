@@ -132,14 +132,6 @@ function App() {
       const answer = Math.round(eval(input) * 1e12) / (1e12).toString();
       setInput(answer);
       setResult(answer);
-      const divide = document.getElementById("divide");
-      const times = document.getElementById("times");
-      const subtract = document.getElementById("subtract");
-      const plus = document.getElementById("plus");
-      divide.classList.remove("toggled");
-      times.classList.remove("toggled");
-      subtract.classList.remove("toggled");
-      plus.classList.remove("toggled");
     } catch (error) {
       setInput("Error");
       setResult("Error");
@@ -175,6 +167,10 @@ function App() {
     ) {
       setInput(`${input}${value}`);
       setResult(`${value}`);
+      divide.classList.remove("toggled");
+      times.classList.remove("toggled");
+      subtract.classList.remove("toggled");
+      plus.classList.remove("toggled");
     } else {
       if (input.startsWith(0)) {
         setInput(`${value}`);
