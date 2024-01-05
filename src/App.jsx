@@ -109,6 +109,11 @@ function App() {
     }
   };
 
+  const tap = () => {
+    var audio = new Audio("/tap.wav");
+    audio.play();
+  };
+
   const clear = () => {
     const divide = document.getElementById("divide");
     const times = document.getElementById("times");
@@ -316,40 +321,167 @@ function App() {
             justifyContent: "center",
           }}
         >
-          <Grey onClick={clear} id="clearBtn" className="light-grey">
+          <Grey
+            onClick={() => {
+              clear();
+              tap();
+            }}
+            id="clearBtn"
+            className="light-grey"
+          >
             <span id="clearText">AC</span>
           </Grey>
-          <Grey onClick={np} className="light-grey">
+          <Grey
+            onClick={() => {
+              np();
+              tap();
+            }}
+            className="light-grey"
+          >
             +/-
           </Grey>
-          <Grey onClick={percent} className="light-grey">
+          <Grey
+            onClick={() => {
+              percent();
+              tap();
+            }}
+            className="light-grey"
+          >
             %
           </Grey>
-          <Orange onClick={() => addInput("/")} id="divide">
+          <Orange
+            onClick={() => {
+              addInput("/");
+              tap();
+            }}
+            id="divide"
+          >
             &divide;
           </Orange>
-          <Number onClick={() => addInput("7")}>7</Number>
-          <Number onClick={() => addInput("8")}>8</Number>
-          <Number onClick={() => addInput("9")}>9</Number>
-          <Orange onClick={() => addInput("*")} id="times">
+          <Number
+            onClick={() => {
+              addInput("7");
+              tap();
+            }}
+          >
+            7
+          </Number>
+          <Number
+            onClick={() => {
+              addInput("8");
+              tap();
+            }}
+          >
+            8
+          </Number>
+          <Number
+            onClick={() => {
+              addInput("9");
+              tap();
+            }}
+          >
+            9
+          </Number>
+          <Orange
+            onClick={() => {
+              addInput("*");
+              tap();
+            }}
+            id="times"
+          >
             &times;
           </Orange>
-          <Number onClick={() => addInput("4")}>4</Number>
-          <Number onClick={() => addInput("5")}>5</Number>
-          <Number onClick={() => addInput("6")}>6</Number>
-          <Orange onClick={() => addInput("-")} id="subtract">
+          <Number
+            onClick={() => {
+              addInput("4");
+              tap();
+            }}
+          >
+            4
+          </Number>
+          <Number
+            onClick={() => {
+              addInput("5");
+              tap();
+            }}
+          >
+            5
+          </Number>
+          <Number
+            onClick={() => {
+              addInput("6");
+              tap();
+            }}
+          >
+            6
+          </Number>
+          <Orange
+            onClick={() => {
+              addInput("-");
+              tap();
+            }}
+            id="subtract"
+          >
             -
           </Orange>
-          <Number onClick={() => addInput("1")}>1</Number>
-          <Number onClick={() => addInput("2")}>2</Number>
-          <Number onClick={() => addInput("3")}>3</Number>
-          <Orange onClick={() => addInput("+")} id="plus">
+          <Number
+            onClick={() => {
+              addInput("1");
+              tap();
+            }}
+          >
+            1
+          </Number>
+          <Number
+            onClick={() => {
+              addInput("2");
+              tap();
+            }}
+          >
+            2
+          </Number>
+          <Number
+            onClick={() => {
+              addInput("3");
+              tap();
+            }}
+          >
+            3
+          </Number>
+          <Orange
+            onClick={() => {
+              addInput("+");
+              tap();
+            }}
+            id="plus"
+          >
             +
           </Orange>
-          <NumberWide onClick={() => addInput("0")}>0</NumberWide>
+          <NumberWide
+            onClick={() => {
+              addInput("0");
+              tap();
+            }}
+          >
+            0
+          </NumberWide>
           <br />
-          <Number onClick={() => addDecimal()}>.</Number>
-          <Orange onClick={calculate}>=</Orange>
+          <Number
+            onClick={() => {
+              addDecimal();
+              tap();
+            }}
+          >
+            .
+          </Number>
+          <Orange
+            onClick={() => {
+              calculate();
+              tap();
+            }}
+          >
+            =
+          </Orange>
         </Box>
       </div>
     </>
