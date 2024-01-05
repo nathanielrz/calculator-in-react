@@ -14,4 +14,4 @@ npm run build
 ```
 The build should end up in the dist directory.
 
-![preview.gif](/public/preview.gif)
+<img src="/public/preview.gif" width="200px"/>
