@@ -323,7 +323,7 @@ function App() {
       <Divider />
       <List>
         <a
-          href="https://github.com/nate-games/calculator-in-react"
+          href="https://github.com/nathanielrz/calculator-in-react"
           target="_blank"
         >
           <ListItem disablePadding>
